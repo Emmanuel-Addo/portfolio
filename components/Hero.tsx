@@ -24,7 +24,7 @@ export default function Hero() {
       <nav className="sticky top-0 z-50 flex items-center justify-between px-10 py-5 bg-[#0d0d0d]/85 backdrop-blur-md border-b border-white/5">
         {/* Logo */}
         <span className="font-bold text-sm tracking-[0.08em] uppercase text-[#f0ede8]">
-          Emmanuel<span className="text-[#c8f135]">.</span>
+          Emmanuel<span className="text-[#38bdf8]">.</span>
         </span>
 
         {/* Desktop nav links */}
@@ -35,8 +35,8 @@ export default function Hero() {
                 href={link.href}
                 className={`transition-colors duration-200 no-underline ${
                   link.active
-                    ? "text-[#c8f135] font-semibold"
-                    : "text-[#f0ede8]/50 hover:text-[#c8f135]"
+                    ? "text-[#38bdf8] font-semibold"
+                    : "text-[#f0ede8]/50 hover:text-[#38bdf8]"
                 }`}
               >
                 {link.label}
@@ -50,7 +50,7 @@ export default function Hero() {
           href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:inline-flex items-center text-[0.7rem] tracking-[0.14em] uppercase text-[#f0ede8]/70 border border-[#f0ede8]/20 px-4 py-2 rounded hover:border-[#c8f135] hover:text-[#c8f135] transition-all duration-200"
+          className="hidden md:inline-flex items-center text-[0.7rem] tracking-[0.14em] uppercase text-[#f0ede8]/70 border border-[#f0ede8]/20 px-4 py-2 rounded hover:border-[#38bdf8] hover:text-[#38bdf8] transition-all duration-200"
         >
           Resume
         </a>
@@ -88,7 +88,7 @@ export default function Hero() {
               href={link.href}
               onClick={() => setMenuOpen(false)}
               className={`text-2xl tracking-[0.1em] uppercase no-underline ${
-                link.active ? "text-[#c8f135]" : "text-[#f0ede8]"
+                link.active ? "text-[#38bdf8]" : "text-[#f0ede8]"
               }`}
             >
               {link.label}
@@ -99,7 +99,6 @@ export default function Hero() {
 
       {/* ── Hero body ── */}
       <div className="flex-1 flex items-center justify-between gap-16 px-10 md:px-20 lg:px-28 py-20 max-w-[1400px] mx-auto w-full">
-
         {/* Left — text (takes ~half the width) */}
         <div className="flex flex-col max-w-[520px] w-full">
           {/* Tag line */}
@@ -112,7 +111,7 @@ export default function Hero() {
             Crafting{" "}
             <span className="relative inline-block">
               scalable
-              <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-[#c8f135] rounded-sm" />
+              <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-[#38bdf8] rounded-sm" />
             </span>{" "}
             software with purpose &amp; precision.
           </h1>
@@ -127,13 +126,13 @@ export default function Hero() {
           <div className="flex items-center gap-4 flex-wrap">
             <a
               href="#work"
-              className="inline-flex items-center bg-[#c8f135] text-[#0d0d0d] font-bold text-[0.75rem] tracking-[0.14em] uppercase px-7 py-4 rounded-[5px] border-2 border-[#c8f135] no-underline hover:bg-[#b8e020] hover:-translate-y-[2px] transition-all duration-200"
+              className="inline-flex items-center bg-[#38bdf8] text-[#0d0d0d] font-bold text-[0.75rem] tracking-[0.14em] uppercase px-7 py-4 rounded-[5px] border-2 border-[#38bdf8] no-underline hover:bg-[#0284c7] hover:border-[#0284c7] hover:-translate-y-[2px] transition-all duration-200"
             >
               View My Work
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center bg-transparent text-[#f0ede8] font-medium text-[0.75rem] tracking-[0.14em] uppercase px-7 py-4 rounded-[5px] border-2 border-[#f0ede8]/20 no-underline hover:border-[#c8f135] hover:text-[#c8f135] hover:-translate-y-[2px] transition-all duration-200"
+              className="inline-flex items-center bg-transparent text-[#f0ede8] font-medium text-[0.75rem] tracking-[0.14em] uppercase px-7 py-4 rounded-[5px] border-2 border-[#f0ede8]/20 no-underline hover:border-[#38bdf8] hover:text-[#38bdf8] hover:-translate-y-[2px] transition-all duration-200"
             >
               Get In Touch
             </a>
@@ -143,9 +142,9 @@ export default function Hero() {
         {/* Right — photo (pushed far right with generous space) */}
         <div className="relative flex-shrink-0 hidden md:block">
           {/* Glow border ring */}
-          <div className="absolute -inset-[7px] rounded-[20px] border border-[#c8f135]/30 pointer-events-none" />
+          <div className="absolute -inset-[7px] rounded-[20px] border border-[#38bdf8]/30 pointer-events-none" />
           {/* Corner accent dot */}
-          <div className="absolute -top-3 -right-3 w-[10px] h-[10px] rounded-full bg-[#c8f135]" />
+          <div className="absolute -top-3 -right-3 w-[10px] h-[10px] rounded-full bg-[#38bdf8]" />
           <Image
             src="/image.jpg"
             alt="Emmanuel Addo — Software Engineer"
@@ -158,13 +157,15 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Scroll indicator ── */}
+      {/* ── Scroll indicator commented out per user request ── */}
+      {/*
       <div className="flex flex-col items-center pb-8 gap-2 opacity-35">
         <span className="text-[0.58rem] tracking-[0.22em] uppercase">
           Scroll
         </span>
         <div className="w-px h-9 bg-gradient-to-b from-[#f0ede8]/60 to-transparent" />
       </div>
+      */}
     </section>
   );
 }

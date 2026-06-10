@@ -1,171 +1,252 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 
-const NAV_LINKS = [
-  { label: "Intro", href: "#intro", active: true },
-  { label: "About", href: "#about" },
-  { label: "Work", href: "#work" },
-  { label: "Skills", href: "#skills" },
-  { label: "Journey", href: "#journey" },
-  { label: "Contact", href: "#contact" },
+const NAV_ITEMS = [
+  { label: "Home", href: "#intro", active: true },
+  { label: "Story", href: "#about" },
+  { label: "Projects", href: "#work" },
+  { label: "Stack", href: "#skills" },
+  { label: "Timeline", href: "#journey" },
+  { label: "Connect", href: "#contact" },
 ];
 
 export default function Hero() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section
+    <div
       id="intro"
-      className="min-h-screen bg-[#0d0d0d] text-[#f0ede8] flex flex-col font-sans"
+      className="relative h-screen w-full flex flex-col overflow-hidden bg-glow-radial"
     >
       {/* ── Navbar ── */}
-      <nav className="sticky top-0 z-50 flex items-center justify-between px-10 py-5 bg-[#0d0d0d]/85 backdrop-blur-md border-b border-white/5">
-        {/* Logo */}
-        <span className="font-bold text-sm tracking-[0.08em] uppercase text-[#f0ede8]">
-          Emmanuel<span className="text-[#38bdf8]">.</span>
-        </span>
+      <header className="w-full flex-shrink-0 z-50">
+        <div className="w-full h-20 flex items-center justify-between" style={{ paddingLeft: "clamp(2rem, 8vw, 7rem)", paddingRight: "clamp(2rem, 8vw, 7rem)" }}>
+          {/* Logo */}
+          <a
+            href="#intro"
+            className="text-[13px] font-extrabold tracking-[0.2em] uppercase text-white hover:opacity-80 transition-opacity"
+          >
+            Emmanuel<span className="text-accent">.</span>
+          </a>
 
-        {/* Desktop nav links */}
-        <ul className="hidden md:flex gap-8 list-none text-[0.7rem] tracking-[0.14em] uppercase">
-          {NAV_LINKS.map((link) => (
-            <li key={link.label}>
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-8">
+            {NAV_ITEMS.map((item) => (
               <a
-                href={link.href}
-                className={`transition-colors duration-200 no-underline ${
-                  link.active
-                    ? "text-[#38bdf8] font-semibold"
-                    : "text-[#f0ede8]/50 hover:text-[#38bdf8]"
+                key={item.label}
+                href={item.href}
+                className={`text-[10px] tracking-[0.22em] font-bold uppercase transition-all duration-200 hover:text-white ${
+                  item.active ? "text-accent" : "text-[#6b7260]"
                 }`}
               >
-                {link.label}
+                {item.label}
               </a>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </nav>
 
-        {/* Resume button — desktop */}
-        <a
-          href="/resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden md:inline-flex items-center text-[0.7rem] tracking-[0.14em] uppercase text-[#f0ede8]/70 border border-[#f0ede8]/20 px-4 py-2 rounded hover:border-[#38bdf8] hover:text-[#38bdf8] transition-all duration-200"
-        >
-          Resume
-        </a>
+          {/* Resume / CV button — same pill style as CTA buttons */}
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex"
+            style={{
+              alignItems: "center",
+              fontWeight: 700,
+              fontSize: "10px",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              padding: "13px 28px",
+              borderRadius: "999px",
+              border: "1.5px solid #3a3d33",
+              color: "#a0a89a",
+              backgroundColor: "transparent",
+              transition: "all 0.2s ease",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+            }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#c8f135"; (e.currentTarget as HTMLElement).style.color = "#c8f135"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#3a3d33"; (e.currentTarget as HTMLElement).style.color = "#a0a89a"; }}
+          >
+            My CV
+          </a>
 
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMenuOpen((v) => !v)}
-          aria-label="Toggle menu"
-          className="md:hidden flex flex-col gap-[5px] bg-transparent border-none cursor-pointer p-1"
-        >
-          <span
-            className={`block w-[22px] h-[2px] bg-[#f0ede8] transition-transform duration-200 ${
-              menuOpen ? "rotate-45 translate-y-[7px]" : ""
-            }`}
-          />
-          <span
-            className={`block w-[22px] h-[2px] bg-[#f0ede8] transition-opacity duration-200 ${
-              menuOpen ? "opacity-0" : "opacity-100"
-            }`}
-          />
-          <span
-            className={`block w-[22px] h-[2px] bg-[#f0ede8] transition-transform duration-200 ${
-              menuOpen ? "-rotate-45 -translate-y-[7px]" : ""
-            }`}
-          />
-        </button>
-      </nav>
-
-      {/* Mobile nav drawer */}
-      {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#0d0d0d] flex flex-col items-center justify-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className={`text-2xl tracking-[0.1em] uppercase no-underline ${
-                link.active ? "text-[#38bdf8]" : "text-[#f0ede8]"
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 text-white/70 hover:text-white focus:outline-none"
+            aria-label="Toggle Menu"
+          >
+            <div className="w-6 h-5 relative flex flex-col justify-between">
+              <span
+                className={`w-full h-[2px] bg-[#6b7260] rounded transition-all duration-300 ${
+                  isOpen ? "rotate-45 translate-y-[9px] bg-white" : ""
+                }`}
+              />
+              <span
+                className={`w-full h-[2px] bg-[#6b7260] rounded transition-opacity duration-300 ${
+                  isOpen ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`w-full h-[2px] bg-[#6b7260] rounded transition-all duration-300 ${
+                  isOpen ? "-rotate-45 -translate-y-[9px] bg-white" : ""
+                }`}
+              />
+            </div>
+          </button>
         </div>
-      )}
 
-      {/* ── Hero body ── */}
-      <div className="flex-1 flex items-center justify-between gap-16 px-10 md:px-20 lg:px-28 py-20 max-w-[1400px] mx-auto w-full">
-        {/* Left — text (takes ~half the width) */}
-        <div className="flex flex-col max-w-[520px] w-full">
-          {/* Tag line */}
-          <p className="text-[0.68rem] tracking-[0.2em] uppercase text-[#f0ede8]/40 mb-6">
-            Emmanuel Addo — Software Engineer
-          </p>
-
-          {/* Headline */}
-          <h1 className="font-serif text-[clamp(1.9rem,3vw,2.6rem)] font-bold leading-[1.18] tracking-[-0.01em] text-[#f0ede8] mb-6">
-            Crafting{" "}
-            <span className="relative inline-block">
-              scalable
-              <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-[#38bdf8] rounded-sm" />
-            </span>{" "}
-            software with purpose &amp; precision.
-          </h1>
-
-          {/* Sub-text */}
-          <p className="text-base leading-[1.75] text-[#f0ede8]/55 max-w-[420px] mb-10">
-            Software engineer focused on building performant, user-centered
-            digital products — from elegant frontends to robust backend systems.
-          </p>
-
-          {/* CTA buttons */}
-          <div className="flex items-center gap-4 flex-wrap">
+        {/* Mobile Drawer */}
+        <div
+          className={`fixed inset-0 top-20 z-40 bg-[#0d0e0b]/98 backdrop-blur-lg transition-all duration-300 md:hidden ${
+            isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
+          }`}
+        >
+          <nav className="flex flex-col items-center justify-center h-[calc(100vh-5rem)] gap-8">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className={`text-xs tracking-[0.25em] font-bold uppercase ${
+                  item.active ? "text-accent" : "text-[#6b7260] hover:text-white"
+                } transition-colors duration-200`}
+              >
+                {item.label}
+              </a>
+            ))}
             <a
-              href="#work"
-              className="inline-flex items-center bg-[#38bdf8] text-[#0d0d0d] font-bold text-[0.75rem] tracking-[0.14em] uppercase px-7 py-4 rounded-[5px] border-2 border-[#38bdf8] no-underline hover:bg-[#0284c7] hover:border-[#0284c7] hover:-translate-y-[2px] transition-all duration-200"
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+              className="mt-4 px-8 py-3 text-[10px] font-bold tracking-[0.25em] uppercase border border-[#2e3229] rounded-full text-[#a0a89a] hover:border-accent hover:text-accent transition-all duration-200"
             >
-              View My Work
+              Resume
             </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center bg-transparent text-[#f0ede8] font-medium text-[0.75rem] tracking-[0.14em] uppercase px-7 py-4 rounded-[5px] border-2 border-[#f0ede8]/20 no-underline hover:border-[#38bdf8] hover:text-[#38bdf8] hover:-translate-y-[2px] transition-all duration-200"
-            >
-              Get In Touch
-            </a>
+          </nav>
+        </div>
+      </header>
+
+      {/* ── Hero Body ── */}
+      <section className="flex-1 flex items-center w-full min-h-0" style={{ paddingLeft: "clamp(2rem, 8vw, 7rem)", paddingRight: "clamp(2rem, 8vw, 7rem)" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full animate-fade-in-up">
+
+          {/* Left — Text */}
+          <div className="lg:col-span-7 flex flex-col justify-center">
+
+            {/* Tag */}
+            <p className="text-[10px] sm:text-[11px] tracking-[0.3em] font-semibold uppercase text-[#6b7260] mb-6">
+              Emmanuel Addo&nbsp;&nbsp;—&nbsp;&nbsp;Software Engineer
+            </p>
+
+            {/* Headline */}
+            <h1 className="font-serif text-[2.8rem] sm:text-[3.8rem] md:text-[4.8rem] lg:text-[5.2rem] leading-[1.05] tracking-tight text-[#f0ede8] mb-6">
+              Building software<br />
+              that{" "}
+              <span className="relative inline-block">
+                scales
+                <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-accent rounded-sm" />
+              </span>
+              {" "}&amp; endures.
+            </h1>
+
+            {/* Sub text */}
+            <p className="text-sm md:text-[15px] leading-[1.75] text-[#6b7260] max-w-[440px]" style={{ marginBottom: "3rem" }}>
+              Full-stack engineer crafting performant, user-centred web products —
+              from clean React frontends to robust Node.js &amp; PostgreSQL backends.
+            </p>
+
+            {/* Buttons */}
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "20px", marginTop: "1.5rem" }}>
+              <a
+                href="#work"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  backgroundColor: "#a8c828",
+                  color: "#0d0e0b",
+                  fontWeight: 800,
+                  fontSize: "11px",
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  padding: "18px 40px",
+                  borderRadius: "999px",
+                  border: "none",
+                  boxShadow: "0 0 24px rgba(168,200,40,0.18)",
+                  transition: "all 0.2s ease",
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "#bada30"; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "#a8c828"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
+              >
+                See My Work
+                <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <a
+                href="#contact"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  fontWeight: 700,
+                  fontSize: "11px",
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  padding: "17px 40px",
+                  borderRadius: "999px",
+                  border: "1.5px solid #3a3d33",
+                  color: "#a0a89a",
+                  backgroundColor: "transparent",
+                  transition: "all 0.2s ease",
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#a8c828"; (e.currentTarget as HTMLElement).style.color = "#a8c828"; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#3a3d33"; (e.currentTarget as HTMLElement).style.color = "#a0a89a"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
+              >
+                Say Hello
+              </a>
+            </div>
           </div>
-        </div>
 
-        {/* Right — photo (pushed far right with generous space) */}
-        <div className="relative flex-shrink-0 hidden md:block">
-          {/* Glow border ring */}
-          <div className="absolute -inset-[7px] rounded-[20px] border border-[#38bdf8]/30 pointer-events-none" />
-          {/* Corner accent dot */}
-          <div className="absolute -top-3 -right-3 w-[10px] h-[10px] rounded-full bg-[#38bdf8]" />
-          <Image
-            src="/image.jpg"
-            alt="Emmanuel Addo — Software Engineer"
-            width={340}
-            height={460}
-            priority
-            className="rounded-[14px] object-cover object-top border border-white/8 grayscale contrast-105"
-            style={{ height: "460px", width: "340px" }}
-          />
-        </div>
-      </div>
+          {/* Right — Photo */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end items-center">
+            <div className="relative group">
+              {/* Offset border */}
+              <div className="absolute inset-0 border border-accent/25 rounded-[36px] translate-x-4 translate-y-4 rotate-[2deg] transition-all duration-500 group-hover:translate-x-2 group-hover:translate-y-2 group-hover:rotate-0 group-hover:border-accent/50" />
+              {/* Image */}
+              <div className="relative rounded-[30px] overflow-hidden border border-[#2a2c26] bg-[#12130f] w-[260px] sm:w-[310px] md:w-[330px] h-[360px] sm:h-[420px] md:h-[450px] shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+                <img
+                  src="/image.jpg"
+                  alt="Emmanuel Addo — Software Engineer"
+                  className="w-full h-full object-cover object-top grayscale contrast-105 transition-transform duration-700 group-hover:scale-105"
+                  onError={(e) => {
+                    e.currentTarget.src =
+                      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600";
+                  }}
+                />
+              </div>
+              {/* Corner dot */}
+              <div className="absolute -top-3 -right-3 w-[10px] h-[10px] rounded-full bg-accent" />
+            </div>
+          </div>
 
-      {/* ── Scroll indicator commented out per user request ── */}
-      {/*
-      <div className="flex flex-col items-center pb-8 gap-2 opacity-35">
-        <span className="text-[0.58rem] tracking-[0.22em] uppercase">
+        </div>
+      </section>
+
+      {/* ── Scroll Indicator ── */}
+      <div className="flex-shrink-0 flex flex-col items-center pb-6 gap-2 opacity-50">
+        <span className="text-[9px] tracking-[0.3em] text-[#6b7260] font-bold uppercase">
           Scroll
         </span>
-        <div className="w-px h-9 bg-gradient-to-b from-[#f0ede8]/60 to-transparent" />
+        <div className="scroll-line" />
       </div>
-      */}
-    </section>
+    </div>
   );
 }

@@ -1,17 +1,14 @@
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Work from "@/components/Work";
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
-      <div className="w-full bg-[#0f0f0f]">
-        <About />
-      <Work/>
-
-      </div>
+    <main className="min-h-screen relative overflow-hidden flex flex-col">
+      {/* Cinematic noise layer */}
+      <div className="noise-overlay" />
       
+      {/* Hero Section & Integrated Navigation */}
+      <Hero />
     </main>
   );
 }
+

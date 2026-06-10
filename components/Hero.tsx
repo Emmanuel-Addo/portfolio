@@ -66,7 +66,7 @@ export default function Hero() {
               textDecoration: "none",
               whiteSpace: "nowrap",
             }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#c8f135"; (e.currentTarget as HTMLElement).style.color = "#c8f135"; }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#a8c828"; (e.currentTarget as HTMLElement).style.color = "#a8c828"; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#3a3d33"; (e.currentTarget as HTMLElement).style.color = "#a0a89a"; }}
           >
             My CV
@@ -131,19 +131,19 @@ export default function Hero() {
       </header>
 
       {/* ── Hero Body ── */}
-      <section className="flex-1 flex items-center w-full min-h-0" style={{ paddingLeft: "clamp(2rem, 8vw, 7rem)", paddingRight: "clamp(2rem, 8vw, 7rem)" }}>
+      <section className="flex-1 flex items-center w-full min-h-0" style={{ paddingLeft: "clamp(2rem, 8vw, 7rem)", paddingRight: "clamp(2rem, 8vw, 7rem)", paddingTop: "clamp(2rem, 5vw, 4rem)", paddingBottom: "clamp(1rem, 3vw, 2.5rem)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full animate-fade-in-up">
 
           {/* Left — Text */}
           <div className="lg:col-span-7 flex flex-col justify-center">
 
             {/* Tag */}
-            <p className="text-[10px] sm:text-[11px] tracking-[0.3em] font-semibold uppercase text-[#6b7260] mb-6">
+            <p className="text-[10px] sm:text-[11px] tracking-[0.3em] font-semibold uppercase text-[#6b7260]" style={{ marginBottom: "2rem" }}>
               Emmanuel Addo&nbsp;&nbsp;—&nbsp;&nbsp;Software Engineer
             </p>
 
             {/* Headline */}
-            <h1 className="font-serif text-[2.8rem] sm:text-[3.8rem] md:text-[4.8rem] lg:text-[5.2rem] leading-[1.05] tracking-tight text-[#f0ede8] mb-6">
+            <h1 className="font-serif text-[2.8rem] sm:text-[3.8rem] md:text-[4.8rem] lg:text-[5.2rem] leading-[1.05] tracking-tight text-[#f0ede8]" style={{ marginBottom: "2.2rem" }}>
               Building software<br />
               that{" "}
               <span className="relative inline-block">
